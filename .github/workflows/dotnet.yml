@@ -20,6 +20,11 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
+    
+    - name: Test
+      run: |
+        dotnet add package coverlet.collector
+        dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage" 
 
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
