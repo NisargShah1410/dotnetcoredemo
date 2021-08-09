@@ -23,7 +23,14 @@ jobs:
     
     - name: Test
       run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage" 
-
+      
+    - uses: codecov/codecov-action@v1
+      with:
+        file: /home/runner/work/dotnetcoredemo/dotnetcoredemo/MySampleWebAppTests1/TestResults/ebef0da2-715c-49fb-9b00-032b9ed9512a/coverage.cobertura.xml
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false) 
+      
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
