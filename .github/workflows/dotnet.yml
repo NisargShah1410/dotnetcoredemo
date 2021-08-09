@@ -21,16 +21,11 @@ jobs:
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
     
-    - name: Test
-      run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage"
-      
-    - name: report generator
-      run: |
-        dotnet add package dotnet-reportgenerator-cli --version 4.6.7
-        dotnet reportgenerator -reports:*.xml -targetdir:MySampleWebAppTests1
-
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    
+    - name: Test
+      run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage" 
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
