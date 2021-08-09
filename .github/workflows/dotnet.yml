@@ -19,7 +19,7 @@ jobs:
         include-prerelease: true
         
     - name: coverlet
-      run: dotnet add package coverlet.msbuild MySampleWebApp/MySampleWebApp.sln
+      run: dotnet add MySampleWebApp/MySampleWebApp.sln package coverlet.msbuild
 
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
