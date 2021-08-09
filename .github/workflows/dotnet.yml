@@ -35,6 +35,12 @@ jobs:
       with:
         name: .net-app
         path: ${{env.DOTNET_ROOT}}/myapp
+    
+    - name: xml for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage.cobertura.xml
+        path: ./MySampleWebAppTests1/TestResults/f2ab4d4f-5fb9-4c7e-bb49-e29fa6088a94
 
   deploy:
     runs-on: ubuntu-latest
