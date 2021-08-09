@@ -25,9 +25,9 @@ jobs:
       run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage"
       
     - name: report generator
-      uses: codacy/codacy-coverage-reporter-action@1.0.0
-      with:
-        coverage-reports: ./coverage.cobertura.xml
+      run: |
+        dotnet add package dotnet-reportgenerator-cli --version 4.6.7
+        dotnet reportgenerator -reports:*.xml -targetdir:MySampleWebAppTests1
 
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
