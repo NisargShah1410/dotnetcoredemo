@@ -17,12 +17,18 @@ jobs:
       with:
         dotnet-version: '3.1.301'
         include-prerelease: true
-
+        
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
     
     - name: Test
       run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage" 
+    
+    - name: Install imp 
+      run: |
+        dotnet tool install --global coverlet.console
+        dotnet tool list -g
+        coverlet .\MySampleWebAppTests1\bin\Debug\netcoreapp3.1\MySampleWebApp.dll --target "dotnet" --targetargs "test --no-build" --exclude "[xunit*]\*" --output "./coverage-reports/"
 
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
