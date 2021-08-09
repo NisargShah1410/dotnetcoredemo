@@ -19,7 +19,7 @@ jobs:
         include-prerelease: true
     
     - name: install imp
-      run : dotnet MySampleWebAppTests1/MySampleWebAppTests1.csproj add package coverlet.msbuild
+      run : dotnet MySampleWebAppTests1 add package coverlet.msbuild
       
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
