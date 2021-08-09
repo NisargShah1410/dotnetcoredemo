@@ -17,9 +17,6 @@ jobs:
       with:
         dotnet-version: '3.1.301'
         include-prerelease: true
-    
-    - name: install imp
-      run : dotnet MySampleWebApp add package coverlet.msbuild
       
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
