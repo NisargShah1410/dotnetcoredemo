@@ -17,6 +17,9 @@ jobs:
       with:
         dotnet-version: '3.1.301'
         include-prerelease: true
+        
+    - name: coverlet
+      run: dotnet add package coverlet.msbuild
 
     - name: Build with dotnet
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
@@ -25,7 +28,7 @@ jobs:
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
     
     - name: Test
-      run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity normal --collect:"XPlat Code Coverage" 
+      run: dotnet test MySampleWebApp/MySampleWebApp.sln --no-restore --verbosity /p:CollectCoverage=true/p:CoverletOutputFormat=cobertura /p:Exclude="[xunit*]\*" /p:CoverletOutput="./TestResults/" 
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
