@@ -44,6 +44,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v2
+      with:
+        name: coverage.cobertura.xml
+        path:  ./MySampleWebAppTests1/TestResults/f2ab4d4f-5fb9-4c7e-bb49-e29fa6088a94
+        
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
       with:
