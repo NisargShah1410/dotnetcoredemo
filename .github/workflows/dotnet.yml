@@ -22,7 +22,7 @@ jobs:
       run: dotnet build MySampleWebApp/MySampleWebApp.sln --configuration Release
     
     - name: Test
-      run: dotnet test MySampleWebApp/MySampleWebApp.csproj /p:CollectCoverage=true 
+      run: dotnet test MySampleWebAppTests1/MySampleWebAppTests1.csproj /p:CollectCoverage=true 
 
     - name: dotnet publish
       run: dotnet publish MySampleWebApp/MySampleWebApp.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
